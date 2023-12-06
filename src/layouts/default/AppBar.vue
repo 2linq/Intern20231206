@@ -1,0 +1,20 @@
+<template>
+  <v-card>
+    <v-tabs
+      bg-color="#64B5F6"
+      center-active
+      align-tabs="center"
+    >
+      <v-tab>One</v-tab>
+      <v-tab>Two</v-tab>
+      <v-tab>Three</v-tab>
+      <v-tab>Four</v-tab>
+      <v-tab>Five</v-tab>
+      <v-tab>Six</v-tab>
+      <v-tab>Seven</v-tab>
+      <v-tab>Eight</v-tab>
+      <v-tab>Nine</v-tab>
+      <v-tab>Ten</v-tab>
+    </v-tabs>
+  </v-card>
+</template>
