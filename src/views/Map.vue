@@ -1,10 +1,11 @@
 <template>
   <v-app>
-    <h1>MapPage</h1>
+    <MapBody/>
     <Bottom/>
   </v-app>
 </template>
 
 <script setup>
 import Bottom from '@/layouts/default/Bottom.vue'
+import MapBody from '@/components/MapBody.vue';
 </script>
