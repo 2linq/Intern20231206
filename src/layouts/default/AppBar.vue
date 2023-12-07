@@ -5,16 +5,21 @@
       center-active
       align-tabs="center"
     >
-      <v-tab>One</v-tab>
-      <v-tab>Two</v-tab>
-      <v-tab>Three</v-tab>
-      <v-tab>Four</v-tab>
-      <v-tab>Five</v-tab>
-      <v-tab>Six</v-tab>
-      <v-tab>Seven</v-tab>
-      <v-tab>Eight</v-tab>
-      <v-tab>Nine</v-tab>
-      <v-tab>Ten</v-tab>
+      <v-tab>すべて</v-tab>
+      <!--下部scriptタグ内のmethods:にて定義-->
+      <v-tab v-on:click="toSpot">スポット</v-tab>
+      <v-tab>交通機関</v-tab>
     </v-tabs>
   </v-card>
 </template>
+
+<script>
+export default {
+  methods: {
+    toSpot() {
+      //router\index.jsでパスを通している
+      this.$router.push("/Spot");
+    },
+  },
+};
+</script>
