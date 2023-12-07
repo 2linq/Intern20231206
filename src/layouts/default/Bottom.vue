@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation :elevation="3" bg-color="#64B5F6">
+  <v-bottom-navigation :elevation="3" bg-color="#64B5F6" class="position-fixed">
     <v-btn v-on:click="toMap">
       <v-icon>mdi-map-marker</v-icon>
 
@@ -18,7 +18,10 @@
       <span>BookMark</span>
     </v-btn>
   </v-bottom-navigation>
+
 </template>
+
+
 
 <script>
 export default {
