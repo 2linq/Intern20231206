@@ -8,16 +8,21 @@ const routes = [
   },
   {
     path: '/Map',
-    component: () => import('@/views/Map.vue')
+    component: () => import('@/views/Map.vue'),
   },
   {
     path: '/BookMark',
-    component: () =>import('@/views/BookMark.vue')
+    component: () =>import('@/views/BookMark.vue'),
   },
   {
     path: '/Spot',
-    component: () =>import('@/views/Spot.vue')
-  }
+    component: () =>import('@/views/Spot.vue'),
+  },
+  {
+    path: '/Transport',
+    component: () =>import('@/views/Transport.vue'),
+  },
+
 ]
 
 const router = createRouter({

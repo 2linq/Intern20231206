@@ -1,16 +1,27 @@
 <template>
 
+  <!-- 上タブに情報を隠さないためのスペース -->
+  <div style="height: 50px"></div>
+
+
   <!-- ストアの区切り -->
   <div id="store_loop" v-for="i in store_name.length-1">
     <div id="store_wrapper">
     <div id="store_title">
       <!--ストアのアイコン-->
       <v-icon>mdi-store-marker-outline</v-icon>
+      <span v-if="store_priority[i] === '高'" style="font-weight: bold;">
       {{ store_name[i] }}
+      </span>
+
+      <span v-else>
+        {{ store_name[i] }}
+        {{ param1Value }}
+      </span>
     </div>
     <div id="store_header">
       <div id="store_businesshour">営業時間: {{ store_time_s[i] }} ～ {{ store_time_e[i] }}</div>
-      <div id="store_time">XX:XX 現在</div>
+      <div id="store_time">15:45 現在</div>
       <div style="clear: both;"></div>
     </div>
     
@@ -105,19 +116,37 @@
 
     <div id="store_info">
       <table id="store_table">
-      <tr><th>住所</th><td>{{ store_adress[i] }}</td></tr>
+      <tr><th>住所</th><td>{{ store_address[i] }}</td></tr>
         <tr><th>優先度</th><td>{{store_priority[i]}}</td></tr>
         <tr><th>混雑度</th><td>混雑
         </td></tr>
-        <tr><th>SNS</th><td>{{store_sns_attention[i]}}</td></tr>
-        <tr><th>SNS</th><td>{{store_sns_gpt[i]}}</td></tr>
+        <tr><th rowspan="2">SNS</th>
+          <!-- 異常ありだった場合に表示を変えます -->
+         <td v-if="store_sns_attention[i] == '異常あり'" style="color: red;font-weight: bold;">
+            {{store_sns_attention[i]}}
+         </td>
+         <td v-else>{{store_sns_attention[i]}}</td>
+       </tr>
+        <tr>
+          <td v-if="store_sns_attention[i] == '異常あり'" style="font-weight: bold;">
+           {{store_sns_gpt[i]}}
+         </td>
+         <td v-else>{{store_sns_gpt[i]}}</td>
+        </tr>
       </table>
       <div id="store_info_link">
         X(Twitter)を開く
       </div>
     </div>
 
+    <div style="height: 10px;"></div>
+
   </div>
+
+
+
+
+
 
 
   <!-- ↓がないとナビゲーションバーで隠れます -->
@@ -128,6 +157,13 @@
 #store_loop {
   max-width: 600px;
   margin: 0 auto;
+  /* フェード用 */
+	animation-name: fadeInAnime;
+	animation-fill-mode:backwards;
+	animation-duration:1s;
+	animation-iteration-count:1;
+	animation-timing-function:ease;
+	animation-direction:normal;
 }
 
 
@@ -263,6 +299,17 @@
   padding: 2px;
   text-align: center;
 }
+
+/* フェード用 */
+@keyframes fadeInAnime{
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
 </style>
 
 
@@ -270,21 +317,37 @@
 export default {
   data(){
     return{
+
       store_name: ['','明洞カフェ','ギャングネムレストラン','仁寺洞ブティックショップ','グァンジャンマーケット','高麗宮観光','ホンデカフェ','ソウル塔展望台','釜山ビーチ','インサドンカルチャーセンター','チャンギャンチョン宮殿'],
       store_time_s: ['','10:00','12:30','11:00','9:00','9:30','8:00','10:00','7:00','10:30','9:00'],
       store_time_e: ['','20:00','21:30','19:00','18:00','17:30','19:00','21:00','21:00','18:30','16:30'],
-      store_adress: ['','ソウル市中区明洞2街123号','ソウル市江南区江南大路432号','ソウル市中区仁寺洞3街56号','釜山市中区グァンジャン街789号','ソウル市中区太陽門広場12号','ソウル市中区ホンデ2街34号','ソウル市鍾路区南山公園路105号','釜山市海雲台区海雲台ビーチ大路123号','ソウル市中区インサドン5街87号','ソウル市中区セジョンジル10号'],
+      store_address: ['','ソウル市中区明洞2街123号','ソウル市江南区江南大路432号','ソウル市中区仁寺洞3街56号','釜山市中区グァンジャン街789号','ソウル市中区太陽門広場12号','ソウル市中区ホンデ2街34号','ソウル市鍾路区南山公園路105号','釜山市海雲台区海雲台ビーチ大路123号','ソウル市中区インサドン5街87号','ソウル市中区セジョンジル10号'],
 
       store_congestion: ['','1','2','3','4','5','1','2','3','4','5'],
 
       store_priority: ['','高','中','低','高','中','低','高','中','低','高'],
 
       store_sns_attention: ['','異常なし','異常なし','異常あり','異常なし','異常あり','異常なし','異常なし','異常あり','異常なし','異常あり'],
-      store_sns_gpt: ['','このスポットの雰囲気が良いという意見がSNS上で共有されています。','最近の投稿には、このスポットの料理が美味しいとの好評の声が多いです。','最近の投稿によると、このエリアで事故が起きたとの情報があります。注意してください。','店員さんの対応が良いというコメントが最近の投稿で多く見られます。','このスポットでの交通量の増加に関する情報があります。交通状況を確認してください。','店員さんの対応が良いというコメントが最近の投稿で多く見られます。','最近の投稿には、このスポットの料理が美味しいとの好評の声が多いです。','SNSによると、この場所で喧嘩が発生したとの報告があります。避けることをお勧めします。','店員さんの対応が良いというコメントが最近の投稿で多く見られます。','最近の投稿によると、このエリアで事故が起きたとの情報があります。注意してください。']
+      store_sns_gpt: ['','このスポットの雰囲気が良いという意見がSNS上で共有されています。','最近の投稿には、このスポットの料理が美味しいとの好評の声が多いです。','最近の投稿によると、このエリアで事故が起きたとの情報があります。注意してください。','店員さんの対応が良いというコメントが最近の投稿で多く見られます。','このスポットでの交通量の増加に関する情報があります。交通状況を確認してください。','店員さんの対応が良いというコメントが最近の投稿で多く見られます。','最近の投稿には、このスポットの料理が美味しいとの好評の声が多いです。','SNSによると、この場所で喧嘩が発生したとの報告があります。避けることをお勧めします。','店員さんの対応が良いというコメントが最近の投稿で多く見られます。','最近の投稿によると、このエリアで事故が起きたとの情報があります。注意してください。'],
 
 
       //store_number: store_name.length
     }
+  },
+  mounted() {
+    // ページがロードされた直後にクエリパラメータを取得
+    const bookmark_i = this.$route.query.bookmark_i;
+    var store_number = 0;
+    var i = 0;
+
+    if (bookmark_i > 0)　{
+      console.log("a");
+      store_number = bookmark_i;
+      i = bookmark_i;
+    }
+
+    // ここで取得した値を使って必要な処理を行う
+    
   }
 }
 </script>

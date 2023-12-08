@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation :elevation="3" bg-color="#64B5F6" class="position-fixed">
+  <v-bottom-navigation :elevation="3" bg-color="#64B5F6" class="position-fixed" width="100%">
     <v-btn v-on:click="toMap">
       <v-icon>mdi-map-marker</v-icon>
 
