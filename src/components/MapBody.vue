@@ -41,7 +41,7 @@ export default {
 .component {
   position: absolute;
   width: 100%;
-  background-color:darkgray;
+  background-color:white;
 }
 .moving-icon {
   position: absolute;

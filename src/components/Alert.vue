@@ -8,7 +8,7 @@
         color="#000000"
         title="東大門"
       >
-        天気：晴れ　気温29
+        新着情報があります。
       </v-alert>
     </div>
 </template>
