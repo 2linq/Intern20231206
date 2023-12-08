@@ -9,6 +9,7 @@
       <!--下部scriptタグ内のmethods:にて定義-->
       <v-tab v-on:click="toSpot">スポット</v-tab>
       <v-tab>交通機関</v-tab>
+      <v-tab v-on:click="toEmegency">緊急事態</v-tab>
     </v-tabs>
   </v-card>
 </template>
@@ -20,6 +21,9 @@ export default {
       //router\index.jsでパスを通している
       this.$router.push("/Spot");
     },
+    toEmegency() {
+      this.$router.push("./Emegency")
+    }
   },
 };
 </script>

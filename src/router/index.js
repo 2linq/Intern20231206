@@ -17,6 +17,10 @@ const routes = [
   {
     path: '/Spot',
     component: () =>import('@/views/Spot.vue')
+  },
+  {
+    path: '/Emegency',
+    component: () =>import('@/views/Emergency.vue')
   }
 ]
 
