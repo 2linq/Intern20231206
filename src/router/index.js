@@ -14,14 +14,8 @@ const routes = [
     path: '/BookMark',
     component: () =>import('@/views/BookMark.vue')
   },
-  {
-    path: '/Spot',
-    component: () =>import('@/views/Spot.vue')
-  },
-  {
-    path: '/Emegency',
-    component: () =>import('@/views/Emergency.vue')
-  }
+  
+  
 ]
 
 const router = createRouter({
