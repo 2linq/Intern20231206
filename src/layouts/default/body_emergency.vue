@@ -1,4 +1,5 @@
 <template>
+ <div style="height: 50px;"></div>
   <div id="happen">
     <div id="happen_wrapper">
       <div id="happen_title">事件</div>

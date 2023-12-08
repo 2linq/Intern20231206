@@ -2,14 +2,14 @@
     <v-app>
       <!-- 上のタブ呼び出し -->
       <AppBar/>
-      <h1>BookMarkPage</h1>
       <!-- インポートしたSpotを呼び出して表示 -->
-      <Spot/>
+      <Bookmarks/>
       <Bottom/>
     </v-app>
   </template>
   
   <script setup>
+  import Bookmarks from '@/layouts/default/body_bookmarks.vue'
   //下のタブのインポート
   import Bottom from '@/layouts/default/Bottom.vue'
   </script>
